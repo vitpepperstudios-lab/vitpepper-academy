@@ -64,7 +64,7 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1
 .brand .mark{width:34px;height:34px;flex:0 0 34px}
 .brand em{font-style:normal;font-weight:400;color:var(--cream);letter-spacing:.12em;font-size:12px;margin-left:2px}
 nav{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
-nav a{font-size:14px;font-weight:500;color:var(--fg-2);padding:6px 10px;border-radius:999px}
+nav a{font-size:13.5px;font-weight:500;color:var(--fg-2);padding:6px 9px;border-radius:999px}
 nav a:hover{color:var(--fg);background:var(--bg-2)}
 nav a[aria-current="page"]{color:var(--fg);background:var(--bg-2)}
 nav a.soon{color:var(--muted);cursor:default}
@@ -102,9 +102,10 @@ main{padding-block:48px 72px}
 
 .areas{padding-block:40px}
 .areas h2{font-size:28px;font-weight:600;letter-spacing:-.01em;margin-bottom:22px}
-.area-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.area-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:900px){ .area-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
 @media (max-width:560px){ .area-grid{grid-template-columns:1fr} }
-.area-card{background:var(--bg);padding:20px 20px 22px;display:grid;grid-template-rows:auto auto auto;gap:16px;position:relative;transition:background .15s}
+.area-card{background:var(--bg);border:1px solid var(--line);padding:20px 20px 22px;display:grid;grid-template-rows:auto auto auto;gap:16px;position:relative;transition:background .15s}
 .area-card:hover{background:var(--bg-2)}
 .area-card .cover{aspect-ratio:4/3;max-width:100%;background:var(--bg-2);border:1px solid var(--line);display:grid;place-items:center;overflow:hidden;position:relative;transition:border-color .2s}
 .area-card:hover .cover{border-color:var(--red)}
@@ -134,6 +135,14 @@ body.editing .area-card.is-soon{cursor:pointer}
 body.editing .area-card.is-soon:hover{background:var(--bg-2)}
 @keyframes pulse{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}
 
+/* temel sanat kapak */
+.area-card .ts-circle{transform-box:fill-box;transform-origin:center;animation:tsbreathe 4s ease-in-out infinite}
+@keyframes tsbreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.area-card .ts-square{transform-box:fill-box;transform-origin:center;animation:tsturn 9s linear infinite}
+@keyframes tsturn{to{transform:rotate(360deg)}}
+.area-card .ts-tri{transform-box:fill-box;transform-origin:50% 100%;animation:tstilt 5s ease-in-out infinite}
+@keyframes tstilt{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+.area-card:hover .ts-square{animation-duration:3s}
 /* oryantasyon kapak */
 .area-card .cmp-needle{transform-origin:120px 90px;animation:needle 7s ease-in-out infinite}
 .area-card:hover .cmp-needle{animation-duration:2.5s}
@@ -672,6 +681,146 @@ const DEFAULT_AREAS = [
         "onset": "Akışı bilen biri, 'şimdi ne yapacağım' diye beklemez; sıradaki adımı kendisi başlatır."
       }
     ]
+  },
+  {
+    "id": "temelsanat",
+    "no": "05",
+    "order": 5,
+    "soon": true,
+    "title": "Temel Sanat Eğitimi",
+    "short": "Göz neyi nasıl görür: çizgi, ton, renk, kompozisyon, perspektif, doku ve popüler sanat konseptleri.",
+    "desc": "Sinematografi kameranın ne yaptığını anlatır; Temel Sanat Eğitimi gözün neyi nasıl gördüğünü. Bir kareye 'güzel olsun' diyemezsin, neyin güzel olduğunu adlandırabilmen gerekir. Bu alan görsel dilin kurucu ilkelerini verir ve brief'lerde sık geçen popüler sanat konseptleriyle kapanır.",
+    "lessons": [
+      {
+        "id": "l1",
+        "title": "Çizgi ve Biçim",
+        "dur": "",
+        "level": "Başlangıç",
+        "video": null,
+        "desc": "Çizginin yönü ve karakteri (yatay sakin, dikey güçlü, diyagonal gergin), temel geometrik biçimler, organik–geometrik karşıtlığı. Bir karakter siluetinin ya da mekân tasarımının neden 'doğru' durduğu buradan okunur.",
+        "points": [
+          "Çizgi yönü ve duygusu",
+          "Daire, kare, üçgen: üç temel biçim ve çağrışımları",
+          "Silüet okunurluğu"
+        ],
+        "onset": "Karakter sheet'inde silüet tek başına tanınmıyorsa biçim dersine geri dön."
+      },
+      {
+        "id": "l2",
+        "title": "Değer ve Kontrast",
+        "dur": "",
+        "level": "Başlangıç",
+        "video": null,
+        "desc": "Açık-koyu ilişkisi, değer skalası, kontrastın dikkati nereye çektiği. Bir karenin siyah-beyaz halinde çalışıp çalışmadığı en güvenilir test; renk sonra gelir.",
+        "points": [
+          "Değer skalası ve tonal aralık",
+          "Yüksek / düşük kontrast ve anlamı",
+          "Siyah-beyaz testi"
+        ],
+        "onset": "Prompt'ta 'high contrast' yazmadan önce kontrastın nerede olmasını istediğini bil."
+      },
+      {
+        "id": "l3",
+        "title": "Renk Teorisi",
+        "dur": "",
+        "level": "Başlangıç",
+        "video": null,
+        "desc": "Renk çemberi, sıcak-soğuk, doygunluk, tamamlayıcı ve analog paletler, renk psikolojisi. Stüdyonun grade dili ve 'palet' kararı burada tanımlanır.",
+        "points": [
+          "Renk çemberi, ton, doygunluk, değer",
+          "Tamamlayıcı, analog, üçlü paletler",
+          "Sıcak-soğuk ve duygu"
+        ],
+        "onset": "'Teal and orange' bir palet adıdır; neden işe yaradığını bilen biri alternatifini de kurar."
+      },
+      {
+        "id": "l4",
+        "title": "Kompozisyon ve Denge",
+        "dur": "",
+        "level": "Başlangıç",
+        "video": null,
+        "desc": "Ağırlık, simetri-asimetri, negatif alan, hiyerarşi, gözün dolaşım yolu. Sinematografi'deki Kompozisyon dersi kadrajı anlatır; bu ders aynı ilkelerin genel halini verir.",
+        "points": [
+          "Görsel ağırlık ve denge",
+          "Negatif alan",
+          "Hiyerarşi: göz önce nereye bakar"
+        ],
+        "onset": "Prompt'a 'balanced composition' yazmak yerine neyin nerede duracağını yaz."
+      },
+      {
+        "id": "l5",
+        "title": "Perspektif ve Mekân",
+        "dur": "",
+        "level": "Başlangıç",
+        "video": null,
+        "desc": "Tek, iki, üç kaçış noktası, göz hizası, atmosferik perspektif, derinlik katmanları. Mekân prompt'u yazarken 'nereden bakıyoruz' sorusunun cevabı.",
+        "points": [
+          "Kaçış noktaları ve ufuk çizgisi",
+          "Atmosferik perspektif",
+          "AI çıktısında perspektif hatasını yakalamak"
+        ],
+        "onset": "Mekân referansı üretirken ufuk çizgisinin nerede olduğunu bilmeden kadraj kuramazsın."
+      },
+      {
+        "id": "l6",
+        "title": "Doku ve Malzeme",
+        "dur": "",
+        "level": "Orta",
+        "video": null,
+        "desc": "Yüzeyin ışıkla ilişkisi: mat, parlak, pürüzlü, şeffaf, metalik. Modellerin en çok bozduğu şeylerden biri malzeme tutarlılığı; bunu görebilmek devamlılık kontrolünün yarısı.",
+        "points": [
+          "Malzeme türleri ve ışık davranışı",
+          "Doku ölçeği",
+          "Devamlılıkta malzeme hataları"
+        ],
+        "onset": "'Brushed metal, matte finish' gibi malzeme kelimeleri prompt'un en çok fark yaratan parçasıdır."
+      },
+      {
+        "id": "l7",
+        "title": "Ritim ve Tekrar",
+        "dur": "",
+        "level": "Orta",
+        "video": null,
+        "desc": "Desen, aralık, varyasyon, vurgu. Hem tek karede hem kurgu temposunda aynı ilke; hikâye anlatıcılığındaki duygu eğrisinin görsel karşılığı.",
+        "points": [
+          "Tekrar ve varyasyon",
+          "Vurgu: kuralı bozan tek öğe",
+          "Karede ve kurguda ritim"
+        ],
+        "onset": "Bir reel'in temposu da bir karenin deseni de aynı soruyla kurulur: ne tekrar ediyor, ne bozuyor?"
+      },
+      {
+        "id": "l8",
+        "title": "Stil ve Referans Okuma",
+        "dur": "",
+        "level": "Orta",
+        "video": null,
+        "desc": "Bir referans görseli nasıl analiz edilir: dönem, teknik, ışık mantığı, palet, malzeme. Bir sanatçının ya da akımın adını prompt'a yazmadan önce neyi istediğini bilmek.",
+        "points": [
+          "Referansı parçalarına ayırmak",
+          "Dönem ve teknik ipuçları",
+          "Referans board kurmak"
+        ],
+        "onset": "Referans board'a koyduğun her kareyi beş kelimeyle açıklayabiliyorsan prompt'un yarısı hazır."
+      },
+      {
+        "id": "l9",
+        "title": "Popüler Sanat Konseptleri",
+        "dur": "",
+        "level": "Orta",
+        "video": null,
+        "desc": "Brief'lerde ve referans board'larda en sık geçen estetik dünyalar: film noir, cyberpunk, steampunk ve dieselpunk, retro-fütürizm, art deco, brutalizm ve minimalizm, sürrealizm, vaporwave ve synthwave. Her birinin kökeni, paleti, ışık mantığı, malzeme dili ve prompt'ta nasıl adlandırılacağı.",
+        "points": [
+          "Noir ve neo-noir: tek kaynaklı ışık, ıslak zemin, jaluzi gölgesi",
+          "Cyberpunk: neon üstüne is karası, dikey megakent; klişeden kaçış",
+          "Steampunk / dieselpunk: pirinç ve buhar, çelik ve dizel; Ottopunk'la akrabalık",
+          "Retro-fütürizm ve art deco: dönemin gelecek hayali, geometrik lüks",
+          "Brutalizm ve minimalizm: kütle ve boşluk",
+          "Sürrealizm, vaporwave, synthwave: rüya mantığı ve dijital nostalji"
+        ],
+        "onset": "Müşteri 'cyberpunk olsun' dediğinde aynı kareyi görüyor olmanız bu derse bağlı."
+      }
+    ]
   }
 ];
 
@@ -720,6 +869,17 @@ const COVERS = {
     <circle cx="112" cy="82" r="5" fill="#fff" opacity=".55"/></g>
     <text x="120" y="20" text-anchor="middle" font-family="var(--font-mono)" font-size="8" fill="var(--muted)" letter-spacing="2">35MM  T2.0</text>
     <text x="120" y="170" text-anchor="middle" font-family="var(--font-mono)" font-size="8" fill="var(--muted)" letter-spacing="2">∞  ·  3m  ·  1m  ·  0.5m</text>
+  </svg>`,
+  /* Temel Sanat Eğitimi: daire, kare, üçgen */
+  temelsanat: `<svg viewBox="0 0 240 180" aria-hidden="true">
+    <line x1="24" y1="140" x2="216" y2="140" stroke="var(--line)" stroke-width="1.5"/>
+    <circle class="ts-circle" cx="66" cy="96" r="30" fill="var(--red)"/>
+    <rect class="ts-square" x="96" y="66" width="60" height="60" fill="none" stroke="var(--fg)" stroke-width="2.4"/>
+    <polygon class="ts-tri" points="178,66 212,126 144,126" fill="var(--cream)"/>
+    <g font-family="var(--font-mono)" font-size="8" fill="var(--muted)" text-anchor="middle" letter-spacing="1.5">
+      <text x="66" y="158">DAİRE</text><text x="126" y="158">KARE</text><text x="178" y="158">ÜÇGEN</text>
+    </g>
+    <text x="120" y="30" text-anchor="middle" font-family="var(--font-mono)" font-size="8" fill="var(--muted)" letter-spacing="2">BİÇİM · TON · RENK</text>
   </svg>`,
   /* Oryantasyon: pusula */
   oryantasyon: `<svg viewBox="0 0 240 180" aria-hidden="true">
