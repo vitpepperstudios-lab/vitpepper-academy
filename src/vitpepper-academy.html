@@ -188,6 +188,21 @@ body.editing .area-card.is-soon:hover{background:var(--bg-2)}
 .edit-tools{display:none;gap:10px;flex-wrap:wrap;margin-top:18px}
 body.editing .edit-tools{display:flex}
 .lessons{list-style:none;margin:0;padding:0}
+/* EKİP */
+.team-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.team-row{background:var(--bg);border:1px solid var(--line);padding:22px 20px;display:grid;gap:6px;position:relative;min-height:112px}
+.team-row:hover{background:var(--bg-2)}
+.team-row .nm{font-family:var(--font-display);font-weight:600;font-size:20px;letter-spacing:-.01em}
+.team-row .tt{font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--red-2)}
+.team-row .ini{position:absolute;right:16px;top:16px;width:34px;height:34px;border-radius:50%;background:var(--bg-3);color:var(--fg-2);display:grid;place-items:center;font-family:var(--font-mono);font-size:12px;letter-spacing:.05em}
+.team-row .row-tools{position:absolute;right:14px;bottom:12px;margin:0}
+.team-empty{padding:40px 8px;color:var(--muted);text-align:center;border:1px solid var(--line)}
+.area-card.is-team .cover svg{width:72%;height:72%}
+.area-card .tm-head{animation:tmbob 3.2s ease-in-out infinite}
+.area-card .tm-head.h2{animation-delay:.4s}.area-card .tm-head.h3{animation-delay:.8s}.area-card .tm-head.h4{animation-delay:1.2s}.area-card .tm-head.h5{animation-delay:1.6s}
+@keyframes tmbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.area-card .tm-badge{transform-box:fill-box;transform-origin:center;animation:tmblink 3.2s ease-in-out infinite}
+@keyframes tmblink{0%,100%{opacity:.35}50%{opacity:1}}
 .lesson-row{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:18px;align-items:center;padding:20px 8px;border-bottom:1px solid var(--line);transition:background .12s}
 .lesson-row:hover{background:var(--bg-2)}
 .lesson-row .n{font-family:var(--font-mono);font-size:14px;color:var(--red-2);font-variant-numeric:tabular-nums}
@@ -370,6 +385,20 @@ footer .mail{font-family:var(--font-mono);color:var(--fg-2)}
     <div class="add-row"><button class="btn" id="btn-add-lesson">+ Ders ekle</button></div>
   </section>
 
+  <!-- EKİP -->
+  <section class="view" id="view-team">
+    <div class="area-head">
+      <div>
+        <div class="eyebrow">Vitpepper Studios</div>
+        <h1>Ekip Listesi</h1>
+        <p>Stüdyoda kim ne yapar. Yeni geldiysen bu sayfa, ilk hafta kime ne soracağını gösterir.</p>
+      </div>
+      <div class="count"><b id="team-count">0</b>kişi</div>
+    </div>
+    <ul class="team-list" id="team-list" style="margin-top:28px"></ul>
+    <div class="add-row"><button class="btn" id="btn-add-member">+ Kişi ekle</button></div>
+  </section>
+
   <!-- LESSON -->
   <section class="view" id="view-lesson">
     <div class="crumbs">
@@ -448,6 +477,21 @@ footer .mail{font-family:var(--font-mono);color:var(--fg-2)}
     <div class="dfoot">
       <button type="button" class="danger" id="f-delete" hidden>Dersi sil</button>
       <div class="right"><button type="button" class="btn ghost sm" data-close>İptal</button><button type="submit" class="btn sm" id="f-save">Kaydet</button></div>
+    </div>
+  </form>
+</dialog>
+
+<!-- MEMBER FORM -->
+<dialog id="dlg-member">
+  <form method="dialog" id="form-member">
+    <div class="dhead"><h2 id="dlg-member-title">Kişi ekle</h2><button type="button" class="icon-btn" data-close aria-label="Kapat">✕</button></div>
+    <div class="dbody">
+      <div class="field"><label for="m-name">Ad Soyad</label><input id="m-name" required maxlength="80"></div>
+      <div class="field"><label for="m-title">Title / Görev</label><input id="m-title" maxlength="80" placeholder="Örn. Creative Director"></div>
+    </div>
+    <div class="dfoot">
+      <button type="button" class="danger" id="m-delete" hidden>Kişiyi sil</button>
+      <div class="right"><button type="button" class="btn ghost sm" data-close>İptal</button><button type="submit" class="btn sm" id="m-save">Kaydet</button></div>
     </div>
   </form>
 </dialog>
@@ -865,6 +909,23 @@ const DEFAULT_AREAS = [
   }
 ];
 
+/* Varsayılan ekip — veritabanı boşsa görünür */
+const DEFAULT_TEAM = [
+  {"id":"t1","name":"Bihter Günaydın","title":"Founder & CEO"},
+  {"id":"t2","name":"Erim Şişman","title":"Chief Content Officer"}
+];
+const TEAM_COVER = `<svg viewBox="0 0 240 180" aria-hidden="true">
+  <g fill="var(--bg)" stroke="var(--fg)" stroke-width="1.6">
+    <g class="tm-head"><circle cx="60" cy="74" r="14"/><path d="M36 128c0-16 11-26 24-26s24 10 24 26"/></g>
+    <g class="tm-head h2"><circle cx="100" cy="66" r="14"/><path d="M76 120c0-16 11-26 24-26s24 10 24 26"/></g>
+    <g class="tm-head h3"><circle cx="140" cy="66" r="14"/><path d="M116 120c0-16 11-26 24-26s24 10 24 26"/></g>
+    <g class="tm-head h4"><circle cx="180" cy="74" r="14"/><path d="M156 128c0-16 11-26 24-26s24 10 24 26"/></g>
+  </g>
+  <circle class="tm-badge" cx="120" cy="52" r="5" fill="var(--red-2)"/>
+  <line x1="24" y1="146" x2="216" y2="146" stroke="var(--line)" stroke-width="1.5"/>
+  <text x="120" y="164" text-anchor="middle" font-family="var(--font-mono)" font-size="8" fill="var(--muted)" letter-spacing="2">KİM NE YAPAR</text>
+</svg>`;
+
 /* Kapak illüstrasyonları — alan id'sine göre; yeni alanlar varsayılan kapağı alır */
 const COVERS = {
   hikaye: `<svg viewBox="0 0 240 180" aria-hidden="true">
@@ -931,6 +992,7 @@ const durMin = d => { const m = /^(\d+):(\d{2})$/.exec(d||""); return m ? +m[1] 
 const totalMin = a => Math.round(a.lessons.reduce((t,l)=>t+durMin(l.dur),0));
 
 let areas = JSON.parse(JSON.stringify(DEFAULT_AREAS));
+let team = JSON.parse(JSON.stringify(DEFAULT_TEAM));
 let DB = null, USER = null, ASSETS = null;
 let canEdit = false, editing = false;
 let current = { area:null, lesson:-1 };
@@ -944,6 +1006,7 @@ function renderNav(){
   $("#nav").innerHTML = sorted().map(a => a.soon && !editing
     ? `<a class="soon" href="#" aria-disabled="true" data-nav="${esc(a.id)}">${esc(a.title)} <small>yakında</small></a>`
     : `<a href="#${esc(a.id)}" data-nav="${esc(a.id)}">${esc(a.title)}${a.soon?' <small style="font-family:var(--font-mono);font-size:10px;color:var(--red-2);letter-spacing:.1em">YAKINDA</small>':''}</a>`).join("")
+    + `<a href="#ekip" data-nav="ekip">Ekip</a>`
     + `<button class="edit-toggle" id="edit-toggle" type="button" hidden><span class="led"></span><span id="edit-label">Düzenle</span></button>`;
   const et = $("#edit-toggle"); et.hidden = !canEdit;
   $("#edit-label").textContent = editing ? "Düzenlemeyi bitir" : "Düzenle";
@@ -969,7 +1032,13 @@ function renderHome(){
       <div class="meta"><span><b>${a.lessons.length} ders</b> · ${totalMin(a)} dk</span>
         <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
     </a>`;
-  }).join("");
+  }).join("") + `
+    <a class="area-card is-team" href="#ekip">
+      <div class="cover"><span class="tag">EKİP</span>${TEAM_COVER}<span class="tag2">${pad(team.length)} KİŞİ</span></div>
+      <div class="ttl"><h3>Ekip Listesi</h3></div>
+      <div class="meta"><span><b>${team.length} kişi</b> · kim ne yapar</span>
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+    </a>`;
   document.querySelectorAll('#area-grid a[data-soon]').forEach(x => x.addEventListener("click", e => { if(!editing) e.preventDefault(); }));
 }
 
@@ -1032,6 +1101,25 @@ function renderLesson(a, i){
   $("#btn-edit-lesson").onclick = () => openLessonForm(a, i);
 }
 
+function renderTeam(){
+  $("#team-count").textContent = team.length;
+  const ini = n => n.trim().split(/\s+/).map(w=>w[0]||"").join("").slice(0,2).toUpperCase();
+  $("#team-list").innerHTML = team.length ? team.map((m,i) => `
+    <li class="team-row">
+      <span class="ini" aria-hidden="true">${esc(ini(m.name||"?"))}</span>
+      <span class="nm">${esc(m.name)}</span>
+      <span class="tt">${esc(m.title||"")}</span>
+      <span class="row-tools">
+        <button type="button" class="icon-btn" data-tmove="-1" data-i="${i}" ${i===0?"disabled":""} aria-label="Yukarı taşı"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
+        <button type="button" class="icon-btn" data-tmove="1" data-i="${i}" ${i===team.length-1?"disabled":""} aria-label="Aşağı taşı"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button>
+        <button type="button" class="icon-btn" data-tedit="${i}" aria-label="Düzenle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></button>
+      </span>
+    </li>`).join("") : `<li class="team-empty">Henüz kimse eklenmedi.${editing?' "Kişi ekle" ile başla.':''}</li>`;
+  document.querySelectorAll('#team-list [data-tmove]').forEach(b => b.addEventListener("click", () => moveMember(+b.dataset.i, +b.dataset.tmove)));
+  document.querySelectorAll('#team-list [data-tedit]').forEach(b => b.addEventListener("click", () => openMemberForm(+b.dataset.tedit)));
+  $("#btn-add-member").onclick = () => openMemberForm(-1);
+}
+
 function route(){
   const h = (location.hash || "#").slice(1);
   const m = h.match(/^([a-z0-9]+)(?:-(\d+))?$/);
@@ -1039,9 +1127,10 @@ function route(){
   const a = m && areas.find(x => x.id === m[1] && visible(x));
   if (a && m[2] && a.lessons[+m[2]-1]) { renderLesson(a, +m[2]-1); view = "lesson"; current = {area:a.id, lesson:+m[2]-1}; }
   else if (a) { renderArea(a); view = "area"; current = {area:a.id, lesson:-1}; $("#btn-edit-area").onclick = () => openAreaForm(a); $("#btn-add-lesson").onclick = () => openLessonForm(a, -1); }
+  else if (h === "ekip") { renderTeam(); view = "team"; current = {area:"ekip", lesson:-1}; }
   document.querySelectorAll(".view").forEach(v => v.classList.toggle("active", v.id === `view-${view}`));
   document.querySelectorAll("#nav a").forEach(x => { if (x.dataset.nav === current.area) x.setAttribute("aria-current","page"); else x.removeAttribute("aria-current"); });
-  document.title = view === "home" ? "Vitpepper Academy" : `${view==="area" ? a.title : a.lessons[current.lesson].title} · Vitpepper Academy`;
+  document.title = view === "home" ? "Vitpepper Academy" : view === "team" ? "Ekip Listesi · Vitpepper Academy" : `${view==="area" ? a.title : a.lessons[current.lesson].title} · Vitpepper Academy`;
   if (h !== "alanlar" && route.last !== h) window.scrollTo({top:0, behavior:"instant"});
   route.last = h;
 }
@@ -1059,6 +1148,43 @@ async function moveLesson(a, i, dir){
   const copy = JSON.parse(JSON.stringify(a)); [copy.lessons[i], copy.lessons[j]] = [copy.lessons[j], copy.lessons[i]];
   if (await saveArea(copy)) { Object.assign(a, copy); renderArea(a); toast("Sıra güncellendi"); }
 }
+
+/* ====== EKİP KAYIT ====== */
+async function saveTeam(list){
+  if (!DB){ toast("Kaydedilemedi: veritabanına bağlı değilsin.", true); return false; }
+  try { await DB.doc("team/list").set({ members: list }); return true; }
+  catch(e){ console.warn(e); toast(e && e.code === "invalid_argument" ? "Bu hesabın düzenleme yetkisi yok." : "Kaydedilemedi, tekrar dene.", true); return false; }
+}
+async function moveMember(i, dir){
+  const j = i + dir; if (j < 0 || j >= team.length) return;
+  const copy = JSON.parse(JSON.stringify(team)); [copy[i], copy[j]] = [copy[j], copy[i]];
+  if (await saveTeam(copy)) { team = copy; renderTeam(); toast("Sıra güncellendi"); }
+}
+const dlgM = $("#dlg-member"); let memberCtx = { index:-1, pendingDelete:false };
+function openMemberForm(i){
+  const m = i >= 0 ? team[i] : null;
+  memberCtx = { index:i, pendingDelete:false };
+  $("#dlg-member-title").textContent = m ? "Kişiyi düzenle" : "Kişi ekle";
+  $("#m-name").value = m ? m.name : ""; $("#m-title").value = m ? (m.title||"") : "";
+  const del = $("#m-delete"); del.hidden = !m; del.textContent = "Kişiyi sil"; del.classList.remove("armed");
+  dlgM.showModal(); $("#m-name").focus();
+}
+$("#m-delete").addEventListener("click", async () => {
+  const b = $("#m-delete");
+  if (!memberCtx.pendingDelete) { memberCtx.pendingDelete = true; b.textContent = "Emin misin? Silmek için tekrar tıkla"; b.classList.add("armed"); return; }
+  const copy = JSON.parse(JSON.stringify(team)); copy.splice(memberCtx.index, 1);
+  if (await saveTeam(copy)) { team = copy; dlgM.close(); toast("Kişi silindi"); renderAll(); }
+});
+$("#form-member").addEventListener("submit", async e => {
+  e.preventDefault();
+  const name = $("#m-name").value.trim(); if (!name) { $("#m-name").focus(); return; }
+  const copy = JSON.parse(JSON.stringify(team));
+  const member = { id: memberCtx.index >= 0 ? team[memberCtx.index].id : "t" + Date.now().toString(36), name, title: $("#m-title").value.trim() };
+  if (memberCtx.index >= 0) copy[memberCtx.index] = member; else copy.push(member);
+  $("#m-save").disabled = true;
+  if (await saveTeam(copy)) { team = copy; dlgM.close(); toast(memberCtx.index >= 0 ? "Kaydedildi" : "Kişi eklendi"); renderAll(); }
+  $("#m-save").disabled = false;
+});
 
 /* ====== DERS FORMU ====== */
 const dlgL = $("#dlg-lesson"); let formCtx = { area:null, index:-1, video:null, pendingDelete:false };
@@ -1154,6 +1280,10 @@ renderAll();
       const incoming = snap.docs.map(d => ({ id:d.id, lessons:[], ...d.data() }));
       areas = incoming; renderAll();
     }, err => console.warn("db", err));
+    DB.doc("team/list").onSnapshot(snap => {
+      if (!snap.exists) return;
+      const d = snap.data(); if (Array.isArray(d.members)) { team = d.members; renderAll(); }
+    }, err => console.warn("db team", err));
   } catch(e){ console.warn(e); }
 })();
 </script>

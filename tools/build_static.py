@@ -24,6 +24,15 @@ m = re.search(r"const DEFAULT_AREAS = \[[\s\S]*?\n\];", src)
 assert m, "DEFAULT_AREAS bulunamadı"
 src = src[:m.start()] + "const DEFAULT_AREAS = " + json.dumps(areas, ensure_ascii=False, indent=1) + ";" + src[m.end():]
 
+# 1b) Ekip listesi (export klasörünün yanında team/list.json varsa)
+team_file = EXPORT_DIR.parent / "team" / "list.json"
+if team_file.exists():
+    t = json.loads(team_file.read_text(encoding="utf-8"))
+    members = [m for m in t.get("members", [])]
+    mt = re.search(r"const DEFAULT_TEAM = \[[\s\S]*?\n\];", src)
+    assert mt, "DEFAULT_TEAM bulunamadı"
+    src = src[:mt.start()] + "const DEFAULT_TEAM = " + json.dumps(members, ensure_ascii=False, indent=1) + ";" + src[mt.end():]
+
 # 2) Canlı sitede YouTube / Vimeo gömülü oynasın
 embed_js = r'''
 function embedFor(url){
