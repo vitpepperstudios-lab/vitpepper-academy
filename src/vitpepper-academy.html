@@ -461,43 +461,99 @@ footer .mail{font-family:var(--font-mono);color:var(--fg-2)}
    Veritabanında kayıt varsa onun yerine veritabanı okunur. */
 const DEFAULT_AREAS = [
   {
-    id:"sinematografi", no:"01", order:1, soon:false, title:"Sinematografi",
-    short:"Kameranın dili. Kadraj, ışık, hareket ve lens; AI üretimde de gerçek sette de aynı kurallar.",
-    desc:"Sinematografi bir görüntünün nasıl 'okunduğu'dur. Bu alanda kadraj ve kompozisyondan ışık ve lens seçimine, kamera hareketinden renge kadar temel kavramları, stüdyonun prompt dilini de içine alacak şekilde öğreneceksin.",
-    lessons:[
-      {id:"l1",title:"Plan ölçekleri: geniş plandan detaya", dur:"08:20", level:"Başlangıç", video:null,
-       desc:"Genel plan, boy, bel, göğüs, yakın, detay. Ölçek bir bilgi ve duygu kararıdır. Hangi anın hangi ölçeği istediğini örneklerle çözüyoruz.",
-       points:["Altı temel ölçek ve kısaltmaları","Ölçek değişiminin duyguya etkisi","Shot listte ölçek yazımı"],
-       onset:"Prompt'ta 'close-up' ile 'medium close-up' farkını bilmek üretilen karenin yarısını kurtarır."},
-      {id:"l2",title:"Kadraj ve kompozisyon", dur:"10:40", level:"Başlangıç", video:null,
-       desc:"Üçte bir kuralı, baş boşluğu, bakış boşluğu, simetri ve dengesizlik. Kuralları öğrenip ne zaman bozacağını görüyoruz.",
-       points:["Üçte bir ve merkez kompozisyon","Headroom ve lead room","Ön plan – orta plan – arka plan katmanları"],
-       onset:"Referans karelere not düşerken 'kompozisyon bozuk' yerine neyin bozuk olduğunu söyleyebilirsin."},
-      {id:"l3",title:"Kamera açıları ve bakış açısı", dur:"09:05", level:"Başlangıç", video:null,
-       desc:"Göz hizası, alt açı, üst açı, Hollanda açısı, POV. Açı, izleyicinin karaktere karşı konumunu belirler.",
-       points:["Açının güç ilişkisi kurması","POV ve OTS (omuz üstü) planlar","Açı sürekliliği ve 180 derece kuralı"],
-       onset:"Diyalog sahnelerinde 180 derece çizgisini bilmezsen kurgu sırasında bakışlar ters döner."},
-      {id:"l4",title:"Lens: odak uzaklığı neyi değiştirir", dur:"11:30", level:"Orta", video:null,
-       desc:"24 mm ile 85 mm aynı yüzü farklı anlatır. Perspektif sıkışması, alan derinliği ve lens seçiminin psikolojisi bu derste.",
-       points:["Geniş, normal, tele: üç karakter","Alan derinliği ve f-stop","Anamorfik görünüm ve ne zaman istenir"],
-       onset:"Prompt'a '35mm lens, shallow depth of field' yazarken ne istediğini gerçekten bilirsin."},
-      {id:"l5",title:"Işığın üç ayağı: key, fill, back", dur:"12:10", level:"Orta", video:null,
-       desc:"Üç nokta aydınlatma başlangıç noktasıdır. Sert ve yumuşak ışık, yön ve kontrast oranı, motivasyonlu ışık kavramı.",
-       points:["Key / fill / back ve oranları","Sert–yumuşak ışık farkı","Motivasyonlu ışık: kaynak nerede"],
-       onset:"'Pencereden gelen yumuşak yan ışık' diyebilmek, 'güzel ışık' demekten çok daha fazla işe yarar."},
-      {id:"l6",title:"Işık tasarımı: zaman, mekân, ruh hali", dur:"10:50", level:"Orta", video:null,
-       desc:"Günün saati, mekânın karakteri ve sahnenin duygusu ışıkla kurulur. Day-for-night, pratik ışıklar ve renk sıcaklığı.",
-       points:["Renk sıcaklığı: Kelvin ve karışık ışık","Pratik ışık kaynakları","Gece, şafak, öğle: üç ışık senaryosu"],
-       onset:"Mekân referansı üretirken 'saat kaç' sorusunu sormadan prompt yazmazsın."},
-      {id:"l7",title:"Kamera hareketi ve neden hareket eder", dur:"09:35", level:"Orta", video:null,
-       desc:"Pan, tilt, dolly, track, crane, el kamerası. Her hareketin bir gerekçesi olmalı; hareket etmeyen kamera da bir karardır.",
-       points:["Temel hareketler ve terimleri","Motivasyonlu hareket vs. süs","Hareket hızının duyguya etkisi"],
-       onset:"Video promptlarında kamera hareketini tek ve net yazmak, modelin kadrajı bozmamasının ilk şartı."},
-      {id:"l8",title:"Renk ve grade: görüntünün tonu", dur:"13:00", level:"İleri", video:null,
-       desc:"Renk paleti, kontrast ve LUT mantığı. Çekimde alınan renk kararıyla kurguda yapılan grade'in farkı; stüdyonun ortak grade dili.",
-       points:["Tamamlayıcı ve analog paletler","Kontrast, saturation ve cilt tonu","Premiere'de temel grade akışı"],
-       onset:"Tüm planların aynı dünyada görünmesi için grade dilini tek sayfada yazabilirsin."}
-    ]
+    "id": "sinematografi",
+    "desc": "Sinematografi bir görüntünün nasıl 'okunduğu'dur. \"Kameranın Dili\" serisinin altı dersi temellerden başlar; çekim ölçekleri, kamera açıları, kompozisyon ve kamera hareketlerinden geçip ışık, mercek ve renkle biter. Her ders stüdyonun prompt dilini de içine alır.",
+    "lessons": [
+      {
+        "id": "l1",
+        "title": "Temeller",
+        "dur": "",
+        "level": "Başlangıç",
+        "video": null,
+        "desc": "Sinematografi nedir, kamera neden bir anlatım aracıdır? Serinin açılış dersi; kadraj, ışık ve hareketin birlikte nasıl bir \"dil\" kurduğunu tanımlar ve sonraki beş dersin haritasını çizer.",
+        "points": [
+          "Sinematografinin tanımı ve görüntü yönetmeninin işi",
+          "Kadraj, ışık, hareket: dilin üç kurucu parçası",
+          "Bir karenin nasıl \"okunduğu\""
+        ],
+        "onset": "Set ve prompt dilinde kullandığımız temel terimlerin hepsi bu derste tanımlanır; sonraki derslerde açıklamadan kullanılır."
+      },
+      {
+        "id": "l2",
+        "title": "Çekim Ölçekleri",
+        "dur": "",
+        "level": "Başlangıç",
+        "video": null,
+        "desc": "Genel plandan detaya altı temel ölçek. Her ölçeğin izleyiciye verdiği bilgi ve duygu farklıdır; hangi anın hangi ölçeği istediğini örneklerle çözüyoruz.",
+        "points": [
+          "Genel, boy, bel, göğüs, yakın, detay planlar ve kısaltmaları",
+          "Ölçek değişiminin duyguya etkisi",
+          "Shot list ve promptta ölçek yazımı"
+        ],
+        "onset": "Prompt'ta 'close-up' ile 'medium close-up' farkını bilmek üretilen karenin yarısını kurtarır."
+      },
+      {
+        "id": "l3",
+        "title": "Kamera Açıları",
+        "dur": "",
+        "level": "Başlangıç",
+        "video": null,
+        "desc": "Göz hizası, alt açı, üst açı, Hollanda açısı, POV ve omuz üstü. Açı, izleyicinin karaktere karşı nerede durduğunu belirler; güç ilişkisini kuran şey açıdır.",
+        "points": [
+          "Açının güç ve yakınlık ilişkisi kurması",
+          "POV ve OTS (omuz üstü) planlar",
+          "180 derece kuralı ve açı sürekliliği"
+        ],
+        "onset": "Diyalog sahnelerinde 180 derece çizgisini bilmezsen kurguda bakışlar ters döner."
+      },
+      {
+        "id": "l4",
+        "title": "Kompozisyon",
+        "dur": "",
+        "level": "Başlangıç",
+        "video": null,
+        "desc": "Üçte bir kuralı, baş boşluğu, bakış boşluğu, simetri ve dengesizlik; ön, orta ve arka plan katmanları. Kuralları öğrenip ne zaman bozacağını görüyoruz.",
+        "points": [
+          "Üçte bir ve merkez kompozisyon",
+          "Headroom ve lead room",
+          "Derinlik: ön plan – orta plan – arka plan"
+        ],
+        "onset": "Referans karelere not düşerken 'kompozisyon bozuk' yerine neyin bozuk olduğunu söyleyebilirsin."
+      },
+      {
+        "id": "l5",
+        "title": "Kamera Hareketleri",
+        "dur": "",
+        "level": "Orta",
+        "video": null,
+        "desc": "Pan, tilt, dolly, track, crane ve el kamerası. Her hareketin bir gerekçesi olmalı; hareket etmeyen kamera da bir karardır.",
+        "points": [
+          "Temel hareketler ve terimleri",
+          "Motivasyonlu hareket ile süs hareket farkı",
+          "Hareket hızının duyguya etkisi"
+        ],
+        "onset": "Video promptlarında kamera hareketini tek ve net yazmak, modelin kadrajı bozmamasının ilk şartı."
+      },
+      {
+        "id": "l6",
+        "title": "Işık, Mercek, Renk",
+        "dur": "",
+        "level": "Orta",
+        "video": null,
+        "desc": "Serinin son dersi: üç nokta aydınlatma, sert–yumuşak ışık, odak uzaklığının anlatıma etkisi ve rengin tonu. Üçü birlikte görüntünün 'havasını' kurar.",
+        "points": [
+          "Key / fill / back ve ışığın yönü",
+          "Geniş, normal, tele lens: üç ayrı karakter",
+          "Renk sıcaklığı, palet ve grade mantığı"
+        ],
+        "onset": "'Pencereden gelen yumuşak yan ışık, 35mm, soğuk palet' diyebildiğinde prompt da set de aynı dili konuşur."
+      }
+    ],
+    "no": "01",
+    "order": 1,
+    "short": "Kameranın dili. Kadraj, ışık, hareket ve lens; AI üretimde de gerçek sette de aynı kurallar.",
+    "soon": false,
+    "title": "Sinematografi"
   },
   {
     id:"senaryo", no:"02", order:2, soon:true, title:"Senaryo",
