@@ -474,162 +474,9 @@ footer .mail{font-family:var(--font-mono);color:var(--fg-2)}
    Veritabanında kayıt varsa onun yerine veritabanı okunur. */
 const DEFAULT_AREAS = [
   {
-    "id": "sinematografi",
-    "desc": "Sinematografi bir görüntünün nasıl 'okunduğu'dur. \"Kameranın Dili\" serisinin altı dersi temellerden başlar; çekim ölçekleri, kamera açıları, kompozisyon ve kamera hareketlerinden geçip ışık, mercek ve renkle biter. Her ders stüdyonun prompt dilini de içine alır.",
-    "lessons": [
-      {
-        "id": "l1",
-        "title": "Temeller",
-        "dur": "",
-        "level": "Başlangıç",
-        "video": null,
-        "desc": "Sinematografi nedir, kamera neden bir anlatım aracıdır? Serinin açılış dersi; kadraj, ışık ve hareketin birlikte nasıl bir \"dil\" kurduğunu tanımlar ve sonraki beş dersin haritasını çizer.",
-        "points": [
-          "Sinematografinin tanımı ve görüntü yönetmeninin işi",
-          "Kadraj, ışık, hareket: dilin üç kurucu parçası",
-          "Bir karenin nasıl \"okunduğu\""
-        ],
-        "onset": "Set ve prompt dilinde kullandığımız temel terimlerin hepsi bu derste tanımlanır; sonraki derslerde açıklamadan kullanılır."
-      },
-      {
-        "id": "l2",
-        "title": "Çekim Ölçekleri",
-        "dur": "",
-        "level": "Başlangıç",
-        "video": null,
-        "desc": "Genel plandan detaya altı temel ölçek. Her ölçeğin izleyiciye verdiği bilgi ve duygu farklıdır; hangi anın hangi ölçeği istediğini örneklerle çözüyoruz.",
-        "points": [
-          "Genel, boy, bel, göğüs, yakın, detay planlar ve kısaltmaları",
-          "Ölçek değişiminin duyguya etkisi",
-          "Shot list ve promptta ölçek yazımı"
-        ],
-        "onset": "Prompt'ta 'close-up' ile 'medium close-up' farkını bilmek üretilen karenin yarısını kurtarır."
-      },
-      {
-        "id": "l3",
-        "title": "Kamera Açıları",
-        "dur": "",
-        "level": "Başlangıç",
-        "video": null,
-        "desc": "Göz hizası, alt açı, üst açı, Hollanda açısı, POV ve omuz üstü. Açı, izleyicinin karaktere karşı nerede durduğunu belirler; güç ilişkisini kuran şey açıdır.",
-        "points": [
-          "Açının güç ve yakınlık ilişkisi kurması",
-          "POV ve OTS (omuz üstü) planlar",
-          "180 derece kuralı ve açı sürekliliği"
-        ],
-        "onset": "Diyalog sahnelerinde 180 derece çizgisini bilmezsen kurguda bakışlar ters döner."
-      },
-      {
-        "id": "l4",
-        "title": "Kompozisyon",
-        "dur": "",
-        "level": "Başlangıç",
-        "video": null,
-        "desc": "Üçte bir kuralı, baş boşluğu, bakış boşluğu, simetri ve dengesizlik; ön, orta ve arka plan katmanları. Kuralları öğrenip ne zaman bozacağını görüyoruz.",
-        "points": [
-          "Üçte bir ve merkez kompozisyon",
-          "Headroom ve lead room",
-          "Derinlik: ön plan – orta plan – arka plan"
-        ],
-        "onset": "Referans karelere not düşerken 'kompozisyon bozuk' yerine neyin bozuk olduğunu söyleyebilirsin."
-      },
-      {
-        "id": "l5",
-        "title": "Kamera Hareketleri",
-        "dur": "",
-        "level": "Orta",
-        "video": null,
-        "desc": "Pan, tilt, dolly, track, crane ve el kamerası. Her hareketin bir gerekçesi olmalı; hareket etmeyen kamera da bir karardır.",
-        "points": [
-          "Temel hareketler ve terimleri",
-          "Motivasyonlu hareket ile süs hareket farkı",
-          "Hareket hızının duyguya etkisi"
-        ],
-        "onset": "Video promptlarında kamera hareketini tek ve net yazmak, modelin kadrajı bozmamasının ilk şartı."
-      },
-      {
-        "id": "l6",
-        "title": "Işık, Mercek, Renk",
-        "dur": "",
-        "level": "Orta",
-        "video": null,
-        "desc": "Serinin son dersi: üç nokta aydınlatma, sert–yumuşak ışık, odak uzaklığının anlatıma etkisi ve rengin tonu. Üçü birlikte görüntünün 'havasını' kurar.",
-        "points": [
-          "Key / fill / back ve ışığın yönü",
-          "Geniş, normal, tele lens: üç ayrı karakter",
-          "Renk sıcaklığı, palet ve grade mantığı"
-        ],
-        "onset": "'Pencereden gelen yumuşak yan ışık, 35mm, soğuk palet' diyebildiğinde prompt da set de aynı dili konuşur."
-      }
-    ],
+    "id": "oryantasyon",
     "no": "01",
     "order": 1,
-    "short": "Kameranın dili. Kadraj, ışık, hareket ve lens; AI üretimde de gerçek sette de aynı kurallar.",
-    "soon": false,
-    "title": "Sinematografi"
-  },
-  {
-    id:"senaryo", no:"02", order:2, soon:true, title:"Senaryo",
-    short:"Fikirden sayfaya. Bir sahnenin neden var olduğunu, karakterin ne istediğini ve bunu kâğıda nasıl yazacağını öğren.",
-    desc:"Senaryo, filmin ilk ve en ucuz prototipidir. Bu alanda bir fikri loglinedan sahne listesine, oradan formatlı sayfaya nasıl taşıyacağını öğreneceksin. Stüdyoda yazdığımız her reklam, mini drama ve dizi bu adımlardan geçer.",
-    lessons:[
-      {id:"l1",title:"Logline: filmi tek cümleye sığdırmak", dur:"08:40", level:"Başlangıç", video:null,
-       desc:"Bir fikir, bir cümlede anlatılamıyorsa henüz bir fikir değildir. Bu derste kim, ne istiyor, neye karşı ve ne pahasına sorularıyla logline kurmayı; sonra aynı cümleyle fikrin tutup tutmadığını test etmeyi göreceksin.",
-       points:["Logline'ın dört parçası: karakter, hedef, engel, bedel","İyi ve kötü logline örnekleri","Reklam briefinden logline çıkarmak"],
-       onset:"Müşteri toplantısında işin özünü 10 saniyede anlatman gerektiğinde logline hazır olur."},
-      {id:"l2",title:"Üç perde ve neden hâlâ işe yarıyor", dur:"11:20", level:"Başlangıç", video:null,
-       desc:"Kuruluş, çatışma, çözüm. Klasik yapıyı ezberlemek için değil, bozmadan önce anlamak için öğreniyoruz. 30 saniyelik bir reklamın da üç perdesi vardır.",
-       points:["Perde kırılma noktaları ve 'dönüm' kavramı","Dikey mini dramada perde sıkıştırma","Bir reklamı üç perdeye bölmek"],
-       onset:"Kurgu masasında 'bir şey eksik' hissi çoğunlukla ikinci perdenin ortasından gelir; nereye bakacağını bilirsin."},
-      {id:"l3",title:"Karakter istiyor, sahne hareket ediyor", dur:"09:15", level:"Başlangıç", video:null,
-       desc:"Her sahnenin bir motoru vardır: karakterin o anda istediği şey. İsteği olmayan sahne durur. Bu derste sahne hedefi, sahne engeli ve sahne sonucu üçlüsünü örneklerle kuruyoruz.",
-       points:["Sahne hedefi nasıl yazılır","Alt metin: söylenen ile istenen arasındaki fark","Bir sahneyi tek hedefe indirgemek"],
-       onset:"Oyuncuya veya AI karaktere 'bu sahnede ne istiyor' diyebildiğinde performans yönü netleşir."},
-      {id:"l4",title:"Diyalog yazmak, konuşma yazmak değildir", dur:"10:05", level:"Orta", video:null,
-       desc:"Gerçek insanlar böyle konuşmaz ama iyi diyalog gerçek gibi duyulur. Bu derste diyalogda ekonomi, ritim ve 'söylenmeyen' üzerine çalışıyoruz.",
-       points:["Her replik ya sahneyi ilerletir ya karakteri açar","Açıklayan diyalogdan (exposition) kaçınmak","Seslendirme ve AI performansı için diyalog kısaltma"],
-       onset:"Ses üretiminde uzun replikler bozulur; kısa ve net yazılmış diyalog ilk denemede oturur."},
-      {id:"l5",title:"Format: sayfa nasıl görünür", dur:"07:30", level:"Başlangıç", video:null,
-       desc:"Sahne başlığı, aksiyon, karakter, parantez, diyalog. Standart format bir süs değil, setteki herkesin aynı sayfayı aynı şekilde okuması için anlaşmadır.",
-       points:["INT./EXT., mekân ve zaman satırı","Aksiyon satırlarında şimdiki zaman ve kısalık","Bir sayfa ≈ bir dakika kuralı ve istisnaları"],
-       onset:"Shot listini senaryo üstünden çıkarırken formatlı sayfa saniyeler kazandırır."},
-      {id:"l6",title:"Briefden senaryoya: reklam örneği", dur:"13:50", level:"Orta", video:null,
-       desc:"Gerçek bir müşteri briefini alıp birlikte senaryoya çeviriyoruz. Önceki beş dersin hepsi bu derste tek bir işte buluşuyor.",
-       points:["Briefteki 'tek mesaj'ı bulmak","Logline → sahne listesi → sayfa","Sunum için senaryoyu iki paragrafa indirmek"],
-       onset:"Stüdyoya gelen her reklam işi bu akıştan geçer; dersin sonunda akışı tek başına yürütebilirsin."}
-    ]
-  },
-  {
-    id:"hikaye", no:"03", order:3, soon:true, title:"Hikâye Anlatıcılığı",
-    short:"Senaryodan bağımsız bir kas: izleyiciyi ilk saniyede tutmak ve son saniyeye kadar bırakmamak.",
-    desc:"Hikâye anlatıcılığı senaryonun kuralları değil, izleyicinin dikkatinin kurallarıdır. Bu alanda bir reels'in ilk iki saniyesinden bir dizinin sezon finaline kadar aynı soruya bakıyoruz: izleyici neden izlemeye devam etsin?",
-    lessons:[
-      {id:"l1",title:"Kanca: ilk üç saniye", dur:"07:10", level:"Başlangıç", video:null,
-       desc:"Dikey içerikte ilk üç saniye kaybedildiyse film bitti. Bu derste kanca türlerini, görsel ve metinsel kancayı ve 'merak boşluğu' açmayı öğreniyoruz.",
-       points:["Soru, şok, vaat: üç kanca tipi","Görsel kanca ile metin kancasını birleştirmek","Kancayı sonunda ödemek"],
-       onset:"Sosyal reel brieflerinde ilk sorulacak soru: kanca ne? Cevabı yoksa çekim başlamaz."},
-      {id:"l2",title:"Merak boşluğu ve bilgi yönetimi", dur:"09:45", level:"Başlangıç", video:null,
-       desc:"İzleyici neyi, ne zaman öğrenecek? Bilgiyi erteleyen, ölçülü veren anlatıcı dikkati elinde tutar. Dramatik ironi ve sürpriz arasındaki fark bu derste.",
-       points:["Dramatik ironi: izleyici karakterden fazla biliyor","Sürpriz vs. gerilim (Hitchcock'un bombası)","Bilgiyi hangi sırayla açmalı"],
-       onset:"Mini drama bölüm sonlarını yazarken 'izleyici şu an ne biliyor' tablosu tutarsın."},
-      {id:"l3",title:"Duygu eğrisi: izleyici nerede ne hisseder", dur:"10:30", level:"Orta", video:null,
-       desc:"Her hikâyenin bir duygu grafiği vardır. Yükseliş, düşüş, nefes. Bu derste gerçek filmlerin eğrisini çıkarıp kendi işlerimize uyguluyoruz.",
-       points:["Duygu eğrisi çizmek","Nefes anları neden gerekli","Reklamda tek duyguyu seçmek"],
-       onset:"Müzik ve kurgu temposu kararı duygu eğrisinden çıkar; kurgucuyla aynı dili konuşursun."},
-      {id:"l4",title:"Göster, söyleme: görsel anlatım", dur:"08:55", level:"Orta", video:null,
-       desc:"Bir bilgiyi diyalogla vermek en kolay, görüntüyle vermek en güçlü yoldur. Nesneler, mekânlar ve jestlerle anlatmayı çalışıyoruz.",
-       points:["Bilgi taşıyan nesne (prop) seçmek","Mekânın karakteri anlatması","Diyalogu görüntüye çevirme egzersizi"],
-       onset:"Prompt yazarken 'karakter üzgün' yerine 'karakter boş fincana bakıyor' yazarsın; model de izleyici de anlar."},
-      {id:"l5",title:"Seri düşünmek: bölüm ve sezon", dur:"12:15", level:"Orta", video:null,
-       desc:"Tek bir hikâye ile seri hikâye farklı kaslar ister. Bölüm sonu kancası, karakter arkı ve 'her bölümde değişen tek şey' prensibi bu derste.",
-       points:["Bölüm motoru ve sezon motoru","Cliffhanger türleri","Kendi orijinal IP'lerimizden örnekler"],
-       onset:"Dikey mini drama paketlerinde 60 bölümün iskeletini tek sayfada çıkarabilirsin."}
-    ]
-  },
-  {
-    "id": "oryantasyon",
-    "no": "04",
-    "order": 4,
     "soon": true,
     "title": "Oryantasyon",
     "short": "Stüdyoya yeni gelen herkesin ilk haftası: nasıl çalışırız, ofiste neye dikkat ederiz, iş brief'ten teslime nasıl akar.",
@@ -683,9 +530,203 @@ const DEFAULT_AREAS = [
     ]
   },
   {
+    "id": "sinematografi",
+    "desc": "Sinematografi bir görüntünün nasıl 'okunduğu'dur. \"Kameranın Dili\" serisinin altı dersi temellerden başlar; çekim ölçekleri, kamera açıları, kompozisyon ve kamera hareketlerinden geçip ışık, mercek ve renkle biter. Her ders stüdyonun prompt dilini de içine alır.",
+    "lessons": [
+      {
+        "id": "l1",
+        "title": "Temeller",
+        "dur": "02:58",
+        "level": "Başlangıç",
+        "video": {
+          "type": "url",
+          "url": "https://vimeo.com/1237392226"
+        },
+        "desc": "Sinematografi nedir, kamera neden bir anlatım aracıdır? Serinin açılış dersi; kadraj, ışık ve hareketin birlikte nasıl bir \"dil\" kurduğunu tanımlar ve sonraki beş dersin haritasını çizer.",
+        "points": [
+          "Sinematografinin tanımı ve görüntü yönetmeninin işi",
+          "Kadraj, ışık, hareket: dilin üç kurucu parçası",
+          "Bir karenin nasıl \"okunduğu\""
+        ],
+        "onset": "Set ve prompt dilinde kullandığımız temel terimlerin hepsi bu derste tanımlanır; sonraki derslerde açıklamadan kullanılır."
+      },
+      {
+        "id": "l2",
+        "title": "Çekim Ölçekleri",
+        "dur": "03:58",
+        "level": "Başlangıç",
+        "video": {
+          "type": "url",
+          "url": "https://vimeo.com/1237392225"
+        },
+        "desc": "Genel plandan detaya altı temel ölçek. Her ölçeğin izleyiciye verdiği bilgi ve duygu farklıdır; hangi anın hangi ölçeği istediğini örneklerle çözüyoruz.",
+        "points": [
+          "Genel, boy, bel, göğüs, yakın, detay planlar ve kısaltmaları",
+          "Ölçek değişiminin duyguya etkisi",
+          "Shot list ve promptta ölçek yazımı"
+        ],
+        "onset": "Prompt'ta 'close-up' ile 'medium close-up' farkını bilmek üretilen karenin yarısını kurtarır."
+      },
+      {
+        "id": "l3",
+        "title": "Kamera Açıları",
+        "dur": "02:39",
+        "level": "Başlangıç",
+        "video": {
+          "type": "url",
+          "url": "https://vimeo.com/1237393038"
+        },
+        "desc": "Göz hizası, alt açı, üst açı, Hollanda açısı, POV ve omuz üstü. Açı, izleyicinin karaktere karşı nerede durduğunu belirler; güç ilişkisini kuran şey açıdır.",
+        "points": [
+          "Açının güç ve yakınlık ilişkisi kurması",
+          "POV ve OTS (omuz üstü) planlar",
+          "180 derece kuralı ve açı sürekliliği"
+        ],
+        "onset": "Diyalog sahnelerinde 180 derece çizgisini bilmezsen kurguda bakışlar ters döner."
+      },
+      {
+        "id": "l4",
+        "title": "Kompozisyon",
+        "dur": "04:30",
+        "level": "Başlangıç",
+        "video": {
+          "type": "url",
+          "url": "https://vimeo.com/1237393668"
+        },
+        "desc": "Üçte bir kuralı, baş boşluğu, bakış boşluğu, simetri ve dengesizlik; ön, orta ve arka plan katmanları. Kuralları öğrenip ne zaman bozacağını görüyoruz.",
+        "points": [
+          "Üçte bir ve merkez kompozisyon",
+          "Headroom ve lead room",
+          "Derinlik: ön plan – orta plan – arka plan"
+        ],
+        "onset": "Referans karelere not düşerken 'kompozisyon bozuk' yerine neyin bozuk olduğunu söyleyebilirsin."
+      },
+      {
+        "id": "l5",
+        "title": "Kamera Hareketleri",
+        "dur": "06:30",
+        "level": "Orta",
+        "video": {
+          "type": "url",
+          "url": "https://vimeo.com/1237394159"
+        },
+        "desc": "Pan, tilt, dolly, track, crane ve el kamerası. Her hareketin bir gerekçesi olmalı; hareket etmeyen kamera da bir karardır.",
+        "points": [
+          "Temel hareketler ve terimleri",
+          "Motivasyonlu hareket ile süs hareket farkı",
+          "Hareket hızının duyguya etkisi"
+        ],
+        "onset": "Video promptlarında kamera hareketini tek ve net yazmak, modelin kadrajı bozmamasının ilk şartı."
+      },
+      {
+        "id": "l6",
+        "title": "Işık, Mercek, Renk",
+        "dur": "05:08",
+        "level": "Orta",
+        "video": {
+          "type": "url",
+          "url": "https://vimeo.com/1237394522"
+        },
+        "desc": "Serinin son dersi: üç nokta aydınlatma, sert–yumuşak ışık, odak uzaklığının anlatıma etkisi ve rengin tonu. Üçü birlikte görüntünün 'havasını' kurar.",
+        "points": [
+          "Key / fill / back ve ışığın yönü",
+          "Geniş, normal, tele lens: üç ayrı karakter",
+          "Renk sıcaklığı, palet ve grade mantığı"
+        ],
+        "onset": "'Pencereden gelen yumuşak yan ışık, 35mm, soğuk palet' diyebildiğinde prompt da set de aynı dili konuşur."
+      }
+    ],
+    "no": "02",
+    "order": 2,
+    "short": "Kameranın dili. Kadraj, ışık, hareket ve lens; AI üretimde de gerçek sette de aynı kurallar.",
+    "soon": false,
+    "title": "Sinematografi"
+  },
+  {
+    "id": "hikaye",
+    "desc": "Hikâye anlatıcılığı senaryonun kuralları değil, izleyicinin dikkatinin kurallarıdır. Bu alanda bir reels'in ilk iki saniyesinden bir dizinin sezon finaline kadar aynı soruya bakıyoruz: izleyici neden izlemeye devam etsin?",
+    "lessons": [
+      {
+        "desc": "Dikey içerikte ilk üç saniye kaybedildiyse film bitti. Bu derste kanca türlerini, görsel ve metinsel kancayı ve 'merak boşluğu' açmayı öğreniyoruz.",
+        "dur": "07:10",
+        "id": "l1",
+        "level": "Başlangıç",
+        "onset": "Sosyal reel brieflerinde ilk sorulacak soru: kanca ne? Cevabı yoksa çekim başlamaz.",
+        "points": [
+          "Soru, şok, vaat: üç kanca tipi",
+          "Görsel kanca ile metin kancasını birleştirmek",
+          "Kancayı sonunda ödemek"
+        ],
+        "title": "Kanca: ilk üç saniye",
+        "video": null
+      },
+      {
+        "desc": "İzleyici neyi, ne zaman öğrenecek? Bilgiyi erteleyen, ölçülü veren anlatıcı dikkati elinde tutar. Dramatik ironi ve sürpriz arasındaki fark bu derste.",
+        "dur": "09:45",
+        "id": "l2",
+        "level": "Başlangıç",
+        "onset": "Mini drama bölüm sonlarını yazarken 'izleyici şu an ne biliyor' tablosu tutarsın.",
+        "points": [
+          "Dramatik ironi: izleyici karakterden fazla biliyor",
+          "Sürpriz vs. gerilim (Hitchcock'un bombası)",
+          "Bilgiyi hangi sırayla açmalı"
+        ],
+        "title": "Merak boşluğu ve bilgi yönetimi",
+        "video": null
+      },
+      {
+        "desc": "Her hikâyenin bir duygu grafiği vardır. Yükseliş, düşüş, nefes. Bu derste gerçek filmlerin eğrisini çıkarıp kendi işlerimize uyguluyoruz.",
+        "dur": "10:30",
+        "id": "l3",
+        "level": "Orta",
+        "onset": "Müzik ve kurgu temposu kararı duygu eğrisinden çıkar; kurgucuyla aynı dili konuşursun.",
+        "points": [
+          "Duygu eğrisi çizmek",
+          "Nefes anları neden gerekli",
+          "Reklamda tek duyguyu seçmek"
+        ],
+        "title": "Duygu eğrisi: izleyici nerede ne hisseder",
+        "video": null
+      },
+      {
+        "desc": "Bir bilgiyi diyalogla vermek en kolay, görüntüyle vermek en güçlü yoldur. Nesneler, mekânlar ve jestlerle anlatmayı çalışıyoruz.",
+        "dur": "08:55",
+        "id": "l4",
+        "level": "Orta",
+        "onset": "Prompt yazarken 'karakter üzgün' yerine 'karakter boş fincana bakıyor' yazarsın; model de izleyici de anlar.",
+        "points": [
+          "Bilgi taşıyan nesne (prop) seçmek",
+          "Mekânın karakteri anlatması",
+          "Diyalogu görüntüye çevirme egzersizi"
+        ],
+        "title": "Göster, söyleme: görsel anlatım",
+        "video": null
+      },
+      {
+        "desc": "Tek bir hikâye ile seri hikâye farklı kaslar ister. Bölüm sonu kancası, karakter arkı ve 'her bölümde değişen tek şey' prensibi bu derste.",
+        "dur": "12:15",
+        "id": "l5",
+        "level": "Orta",
+        "onset": "Dikey mini drama paketlerinde 60 bölümün iskeletini tek sayfada çıkarabilirsin.",
+        "points": [
+          "Bölüm motoru ve sezon motoru",
+          "Cliffhanger türleri",
+          "Kendi orijinal IP'lerimizden örnekler"
+        ],
+        "title": "Seri düşünmek: bölüm ve sezon",
+        "video": null
+      }
+    ],
+    "no": "03",
+    "order": 3,
+    "short": "Senaryodan bağımsız bir kas: izleyiciyi ilk saniyede tutmak ve son saniyeye kadar bırakmamak.",
+    "soon": true,
+    "title": "Hikâye Anlatıcılığı"
+  },
+  {
     "id": "temelsanat",
-    "no": "05",
-    "order": 5,
+    "no": "04",
+    "order": 4,
     "soon": true,
     "title": "Temel Sanat Eğitimi",
     "short": "Göz neyi nasıl görür: çizgi, ton, renk, kompozisyon, perspektif, doku ve popüler sanat konseptleri.",
@@ -826,22 +867,6 @@ const DEFAULT_AREAS = [
 
 /* Kapak illüstrasyonları — alan id'sine göre; yeni alanlar varsayılan kapağı alır */
 const COVERS = {
-  senaryo: `<svg viewBox="0 0 240 180" aria-hidden="true">
-    <rect class="page-back" x="46" y="14" width="148" height="152" fill="var(--bg)" stroke="var(--fg-2)" stroke-width="1.5"/>
-    <rect x="40" y="20" width="148" height="152" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.5"/>
-    <text x="54" y="44" font-family="var(--font-mono)" font-size="9" fill="var(--red-2)" letter-spacing="1">INT. STÜDYO – GECE</text>
-    <rect class="type t1" x="54" y="54" width="118" height="3" fill="var(--fg-2)" opacity=".8"/>
-    <rect class="type t2" x="54" y="62" width="96" height="3" fill="var(--fg-2)" opacity=".8"/>
-    <rect class="type t3" x="54" y="70" width="108" height="3" fill="var(--fg-2)" opacity=".8"/>
-    <text x="114" y="92" text-anchor="middle" font-family="var(--font-mono)" font-size="8" fill="var(--fg)" letter-spacing="1.5">YENİ BİBER</text>
-    <rect class="type t4" x="80" y="100" width="68" height="3" fill="var(--fg)"/>
-    <rect class="type t5" x="86" y="108" width="56" height="3" fill="var(--fg)"/>
-    <rect class="type t6" x="90" y="116" width="48" height="3" fill="var(--fg)"/>
-    <rect class="type t7" x="54" y="134" width="84" height="3" fill="var(--fg-2)" opacity=".8"/>
-    <rect class="type t8" x="54" y="142" width="60" height="3" fill="var(--fg-2)" opacity=".8"/>
-    <rect class="cursor" x="118" y="139" width="7" height="10" fill="var(--red-2)"/>
-    <text x="178" y="162" text-anchor="end" font-family="var(--font-mono)" font-size="7" fill="var(--muted)">1.</text>
-  </svg>`,
   hikaye: `<svg viewBox="0 0 240 180" aria-hidden="true">
     <line x1="24" y1="150" x2="216" y2="150" stroke="var(--line)" stroke-width="1.5"/>
     <line x1="24" y1="30" x2="24" y2="150" stroke="var(--line)" stroke-width="1.5"/>
