@@ -309,7 +309,7 @@ footer .mail{font-family:var(--font-mono);color:var(--fg-2)}
     <div class="hero">
       <h1>Yeni Biberlere,<span>Temel Bilgiler.</span></h1>
       <div class="intro">
-        <p>Vitpepper Studios'un yeni ekip arkadaşları için hazırlanmış kısa, videolu ders serisi. Setin diliyle başlar, hikâyeyle devam eder, kamerayla biter.</p>
+        <p>Vitpepper Studios'un yeni ekip arkadaşları için hazırlanmış kısa, videolu ders serisi. Hangi alandan başlayacağın sana kalmış; her alan kendi içinde sırayla ilerler.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <a class="btn" href="#sinematografi" id="hero-cta">İlk dersten başla
             <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -334,8 +334,8 @@ footer .mail{font-family:var(--font-mono);color:var(--fg-2)}
         <p>Dersler 6–15 dakika arasında. Bir dersi bir oturuşta izle, ertesi gün notlarına dönüp tekrar bak.</p>
       </div>
       <div>
-        <h3>Sette kullan</h3>
-        <p>Her dersin sonunda "Sette ne işine yarar" bölümü var. Öğrendiğin terimi ilk işinde sesli kullan; yerleşmesi böyle olur.</p>
+        <h3>Promptta kullan</h3>
+        <p>Her dersin sonunda "Promptta ne işine yarar" bölümü var. AI film üretirken öğrendiğin terimi promptlarında kullan; model de sen de aynı dili konuşursunuz.</p>
       </div>
     </div>
   </section>
@@ -391,7 +391,7 @@ footer .mail{font-family:var(--font-mono);color:var(--fg-2)}
           <div class="kv" id="lesson-kv"></div>
         </div>
         <div class="box">
-          <h2>Sette ne işine yarar</h2>
+          <h2>Promptta ne işine yarar</h2>
           <p id="lesson-onset" style="margin:0;font-size:15px"></p>
         </div>
       </div>
@@ -763,7 +763,7 @@ function renderLesson(a, i){
     <span>Alan</span><span>${esc(a.title)}</span>
     <span>Süre</span><span>${esc(l.dur||"—")}${l.dur?" dk":""}</span>
     <span>Seviye</span><span>${esc(l.level||"—")}</span>
-    <span>Eğitmen</span><span>Vitpepper Studios</span>`;
+    <span>Eğitmen</span><span>Eski Biber</span>`;
   const prev = i>0 ? `<a href="#${a.id}-${n-1}"><span class="lab">← Önceki ders</span><span class="tt">${esc(a.lessons[i-1].title)}</span></a>` : `<div><span class="lab">Başlangıç</span><span class="tt" style="color:var(--muted)">Bu alanın ilk dersi</span></div>`;
   const list = sorted(), nextA = list[(list.findIndex(x=>x.id===a.id)+1) % list.length];
   const next = i<N-1 ? `<a class="next" href="#${a.id}-${n+1}"><span class="lab">Sonraki ders →</span><span class="tt">${esc(a.lessons[i+1].title)}</span></a>`
