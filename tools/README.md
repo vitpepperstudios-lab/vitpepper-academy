@@ -6,3 +6,8 @@
 
 Elle çalıştırmak için:
     python3 tools/build_static.py src/vitpepper-academy.html <export-klasörü>/areas .
+
+## Şifre kapısı
+Derlerken `ACADEMY_PASSWORD=<şifre>` ortam değişkeni verilirse sayfa gövdesi AES-GCM ile şifrelenir;
+ziyaretçi logo + şifre alanı görür, doğru şifreyle içerik tarayıcıda çözülür. Değişken verilmezse site açık yayınlanır.
+    ACADEMY_PASSWORD=1234 python3 tools/build_static.py src/vitpepper-academy.html <export>/areas .
